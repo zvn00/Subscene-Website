@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('../partials/head'); %>
+
+</head>
+
+<body>
+
+    <header class="header" id="header">
+
+        <%- include('../partials/header'); %>
+
+    </header>
+
+    <div class="container">
+
+        <div class="other__search__container">
+            <input class="search__input" type="text" placeholder="Search">
+          </div>
+
+        <h2 class="section-name" style="text-align: center;">Popular Subtitles</h2>
+
+        <ul class="cat">
+            <li class="catName"><a href="/popular">All</a></li>
+            <li class="catName" style="font-weight: 900; margin-top: 3px;">.</li>
+            <li class="catName"><a href="/popular/movie">Movies</a></li>
+            <li class="catName" style="font-weight: 900; margin-top: 3px;">.</li>
+            <li class="catName"><a href="/popular/series">Tv Series</a></li>
+        </ul>
+
+        <div class="language-filter">
+            <label for="language-select">Filter by Language:</label>
+            <select id="language-select">
+                <option value="">All</option>
+                <% for (let j = 0; j < section.length; j++) {%>
+                <option value="<%= section[j].lan || '' %>"><%= section[j].lan || '' %></option>
+                <% } %>
+            </select>
+        </div>
+
+        <div class="tableContainer">
+
+            <table id="dataTable" class="popular display responsive" width="100%">
+                <thead>
+                    <tr>
+                        <th>Language</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Uploaded</th>
+                        <th>Downloads</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let j = 0; j < section.length; j++) {%>
+                    <tr>
+                        <td><%= section[j].lan %></td>
+                        <td><a href="<%= section[j].path || '' %>"> <%= section[j].filmTitle || '' %> </a></td>
+                        <td><%= section[j].type || "Null" %></td>
+                        <td><%= section[j].uploaded || '' %></td>
+                        <td><%= section[j].downloads || '' %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+
+        <%- include('../partials/footer'); %>
+
+    </footer>
+
+</body>
+
+</html>

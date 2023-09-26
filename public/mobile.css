@@ -1,0 +1,42 @@
+@media only screen and (max-width: 600px) {
+    .container {
+        margin: 6rem 3% 3rem;
+    }
+    .section-name {
+        font-size: 2rem;
+    }
+    .subDesc .title {
+        font-size: 2.5rem;
+        line-height: 40px;
+    }
+    div#dataTable_paginate {
+        align-items: center;
+        justify-content: center;
+    }
+    .searchDiv {
+        padding: 2rem;
+    }
+    .searchHeader {
+        font-size: 1.2rem !important;
+    }
+    .search__container, .other__search__container {
+        width: 100%;
+    }
+
+    footer {
+        margin: 0 3%;
+    }
+
+    .legal span {
+        text-align: center;
+    }
+
+    .subtitleInfoSection {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+}

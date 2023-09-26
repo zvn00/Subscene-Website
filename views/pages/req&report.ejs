@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('../partials/head'); %>
+
+</head>
+
+<body>
+
+    <header class="header" id="header">
+
+        <%- include('../partials/header'); %>
+
+    </header>
+
+    <div class="container">
+
+        <div class="other__search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div>
+
+        <h1 class="reqReportPage section-name">Request or Report</h1>
+
+        <p class="reqReport">Please use the search option at the top to search for the subtitle you want; if you still can't find it, you can request it here. Thank You.</p>
+
+        <div id="disqus_thread"></div>
+        <script>
+            (function () {
+                var d = document,
+                    s = d.createElement('script');
+                s.src = 'https://subtitlez.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+
+    </div>
+
+    <footer>
+
+        <%- include('../partials/footer'); %>
+
+    </footer>
+
+</body>
+
+</html>

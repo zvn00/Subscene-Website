@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('../partials/head'); %>
+
+</head>
+
+<body>
+
+    <header class="header" id="header">
+
+        <%- include('../partials/header'); %>
+
+    </header>
+
+    <div class="container">
+        <h2>Results showing for "<%= query %>"</h3>
+            <% for (let i = 0; i < section.length; i++) {%>
+            <div class="resultSection">
+                <h3 class="section-name"> <%= section[i].section || '' %> </h3>
+                <ol class="searchSubs">
+                    <% for (let j = 0; j < section[i].data.length; j++) {%>
+                    <li class="searchSub">
+                        <a href="<%= section[i].data[j].path || '' %>" class="subName"> <%= section[i].data[j].title || '' %> </a>
+                        <span class="subCount"> <%= section[i].data[j].count || '' %> </span>
+                    </li>
+                    <% } %>
+                </ol>
+            </div>
+            <% } %>
+
+    </div>
+
+    <footer>
+
+        <%- include('../partials/footer'); %>
+
+    </footer>
+
+</body>
+
+</html>

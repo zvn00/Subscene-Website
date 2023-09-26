@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('../partials/head'); %>
+    <style>
+        .howToDownload ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+        /* Style for list items */
+        .howToDownload li {
+            margin-bottom: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header" id="header">
+
+        <%- include('../partials/header'); %>
+
+    </header>
+
+    <div class="container">
+        <div class="other__search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div>
+
+        <h2 class="subHeader" style="text-align: center;"><%= data.title || '' %> <%= lan || '' %> subtitle download</h2>
+        <div class="subInfo">
+            <div class="subPoster">
+                <img src="<%= data.imdbInfo.poster || '' %>" alt="<%= data.title %>">
+            </div>
+            <div class="subDesc">
+                <span class="title"><%= data.title || '' %></span>
+                <div class="more">
+                    <span class="content"><%= data.imdbInfo.contentRating || '' %></span>
+                    <span class="rating">⭐ <%= data.imdbInfo.rating.star || '' %></span>
+                </div>
+                <div class="release">
+                    <span class="subKey">Release Date :</span>
+                    <span><%= data.imdbInfo.released.day || '' %>/ <%= data.imdbInfo.released.month || '' %>/
+                        <%= data.imdbInfo.released.year || '' %></span>
+                </div>
+                <div class="runtime">
+                    <span class="subKey">Runtime :</span>
+                    <span><%= data.imdbInfo.runtime || '' %></span>
+                </div>
+                <% for (let i = 0; i < data.imdbInfo.top_credits.length; i++) {%>
+                <div class="cast">
+                    <span class="subKey"><%= data.imdbInfo.top_credits[i].name || '' %> :</span>
+                    <span>
+                        <% for (let j = 0; j < data.imdbInfo.top_credits[i].value.length; j++) { %>
+                        <%= data.imdbInfo.top_credits[i].value[j] || '' %>
+                        <% if (j < data.imdbInfo.top_credits[i].value.length - 1) { %>
+                        ,
+                        <% } %>
+                        <% } %>
+                    </span>
+                </div>
+                <% } %>
+                <div class="desc">
+                    <span class="subKey">Description :</span>
+                    <span><%= data.imdbInfo.description || '' %></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <button class="download-btn" data-timer="5">
+                <span class="icon material-symbols-rounded"><i class="fas fa-download"></i></span>
+                <span class="text">Download <%= lan || '' %> subtitle</span>
+            </button>
+
+            <button class="btn-share">
+                <span class="btn-text">Share</span><span class="btn-icon">
+                    <svg t="1580465783605" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="9773" width="18" height="18">
+                        <path
+                            d="M767.99994 585.142857q75.995429 0 129.462857 53.394286t53.394286 129.462857-53.394286 129.462857-129.462857 53.394286-129.462857-53.394286-53.394286-129.462857q0-6.875429 1.170286-19.456l-205.677714-102.838857q-52.589714 49.152-124.562286 49.152-75.995429 0-129.462857-53.394286t-53.394286-129.462857 53.394286-129.462857 129.462857-53.394286q71.972571 0 124.562286 49.152l205.677714-102.838857q-1.170286-12.580571-1.170286-19.456 0-75.995429 53.394286-129.462857t129.462857-53.394286 129.462857 53.394286 53.394286 129.462857-53.394286 129.462857-129.462857 53.394286q-71.972571 0-124.562286-49.152l-205.677714 102.838857q1.170286 12.580571 1.170286 19.456t-1.170286 19.456l205.677714 102.838857q52.589714-49.152 124.562286-49.152z"
+                            p-id="9774" fill="#ffffff"></path>
+                    </svg>
+                </span>
+                <ul class="social-icons">
+                    <li>
+                        <a href="#" id="facebook-link" target="_blank"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" id="twitter-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" id="whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" id="telegram-link" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </li>
+                </ul>
+            </button>
+
+        </div>
+
+        <div class="subtitleInfoSection">
+
+            <div class="subtitleDetailsDiv">
+                <span class="subtitleDetailsTitle">Subtitle Details :</span>
+                <% for (let i = 0; i < data.subtitlesDetails.length; i++) {%>
+                <div class="subtitleDetails">
+                    <span class="subtitleDetailsKey"><%= data.subtitlesDetails[i].name || '' %> :</span>
+                    <span><%= data.subtitlesDetails[i].value || '' %></span>
+                </div>
+                <% } %>
+            </div>
+
+            <div class="releaseInfo">
+                <span class="releaseInfoTitle">Release Info :</span>
+                <ul>
+                    <% for (let key in data.releaseInfo) { %>
+                    <li><%= key || '' %>: <%= data.releaseInfo[key] || '' %></li>
+                    <% } %>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="howToDownload">
+            <p style="margin: 0rem 0 1rem 0;">
+                <%= data.title %> subtitles are now available for download on SubtitleZ.com.
+                Discover the convenience of accessing the <%= data.title %> SRT file with just a
+                single click. As a trusted source for subtitles, SubtitleZ.com offers a wide range of formats, including
+                Mp4, Mkv, Avi, BluRay, HDRip, WEBRip, WEB-DL, 720p, 1080p, 2160p, 4K and more, ensuring compatibility
+                with any video format you prefer..
+            </p>
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">How to Download <%= data.title %> Subtitle:</h3>
+            <strong style="margin-top: 0.3rem;">For Mobile (MX Player or another
+                player):</strong>
+            <ul style="margin-bottom: 1rem;">
+                <li>Start by downloading the subtitles from SubtitleZ.com.</li>
+                <li>Check if the subtitles are in SRT or Zip format. If it's in Zip format, extract the
+                    files.
+                </li>
+                <li>Move the SRT format file to the folder where your Movie/Tv Series is located.</li>
+                <li>Open the video player of your choice.</li>
+                <li>Select the video you want to watch.</li>
+                <li>Tap the right-side button (in MX Player).</li>
+                <li>Click on the subtitle option and then select the "Open" option.</li>
+                <li>Navigate to the subtitle file and click on it to load the subtitles.</li>
+            </ul>
+            <strong>For Computer:</strong>
+            <ul style="margin-top: 0.3rem;">
+                <li>Download the subtitles from SubtitleZ.com.</li>
+                <li>Check if the subtitles are in SRT or Zip format. If it's in Zip format, extract the
+                    files.
+                </li>
+                <li>Move the SRT format file to the folder where your Movie/TV Series is located.</li>
+                <li>Enjoy watching the movie or TV series.</li>
+                <ul>
+                    <li>If you are using Windows Media Player, the above steps are sufficient.</li>
+                    <li>If you are using VLC player, open the player, right-click, and select "Add
+                        Subtitle."
+                    </li>
+                </ul>
+            </ul>
+        </div>
+
+
+
+    </div>
+
+    <footer>
+
+        <%- include('../partials/footer'); %>
+
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentUrl = window.location.href;
+            document.getElementById("facebook-link").href = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("twitter-link").href = `https://twitter.com/share?url=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("whatsapp-link").href = `https://api.whatsapp.com/send?text=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("telegram-link").href = `https://telegram.me/share/url?url=${encodeURIComponent(currentUrl)}`;
+
+            const downloadBtn = document.querySelector(".download-btn");
+            const fileLink = "https://subtitlez-api.glitch.me" + "<%= data.download %>";
+
+            const initTimer = () => {
+                if (downloadBtn.classList.contains("disable-timer")) {
+                    return location.href = fileLink;
+                }
+                let timer = downloadBtn.dataset.timer;
+                downloadBtn.classList.add("timer");
+                downloadBtn.innerHTML = `Your download will begin in <b>${timer}</b> seconds`;
+                const initCounter = setInterval(() => {
+                    if (timer > 0) {
+                        timer--;
+                        return downloadBtn.innerHTML =
+                            `Your download will begin in <b>${timer}</b> seconds`;
+                    }
+                    clearInterval(initCounter);
+                    location.href = fileLink;
+                    downloadBtn.innerText = "Your file is downloading...";
+                    setTimeout(() => {
+                        downloadBtn.classList.replace("timer", "disable-timer");
+                        downloadBtn.innerHTML = `<span class="icon material-symbols-rounded"><i class="fas fa-download"></i></span>
+                                             <span class="text">Download Again</span>`;
+                    }, 3000);
+                }, 1000);
+            }
+
+            downloadBtn.addEventListener("click", initTimer);
+        });
+    </script>
+
+</body>
+
+</html>

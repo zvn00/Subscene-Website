@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('../partials/head'); %>
+    <style>
+        .notFound {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header" id="header">
+
+        <%- include('../partials/header'); %>
+
+    </header>
+
+    <div class="container">
+
+        <div class="other__search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div>
+
+        <img class="notFound"
+            src="https://cdn.dribbble.com/users/463734/screenshots/2016792/attachments/356197/empty_result.png"
+            alt="©️ https://dribbble.com/shots/2016792-Search-Empty-Result-Data">
+
+    </div>
+
+    <footer>
+
+        <%- include('../partials/footer'); %>
+
+    </footer>
+
+</body>
+
+</html>
