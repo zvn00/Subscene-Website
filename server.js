@@ -16,7 +16,7 @@ app.use(express.static("public"));
 app.use(cors());
 
 const port = process.env.PORT || 3000;
-const baseUrl = "https://subtitlez-api.glitch.me";
+const baseUrl = "https://subscene-api.glitch.me";
 
 app.get("/", async (req, res) => {
   try {
