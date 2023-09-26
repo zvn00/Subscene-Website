@@ -1004,7 +1004,15 @@ footer .legal span a:hover {
   text-align: center;
   display: inline-block;
   vertical-align: middle;
-  line-height: 1;
+}
+
+.downloadTxt{
+  max-width: 100%;
+  width: auto;
+  white-space: wrap; 
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .download-btn:hover {

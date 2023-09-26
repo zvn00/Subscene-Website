@@ -197,12 +197,12 @@
                 }
                 let timer = downloadBtn.dataset.timer;
                 downloadBtn.classList.add("timer");
-                downloadBtn.innerHTML = `Your download will begin in <b>${timer}</b> seconds`;
+                downloadBtn.innerHTML = `<span class="downloadTxt">Your download will begin in <b>${timer}</b> seconds</span>`;
                 const initCounter = setInterval(() => {
                     if (timer > 0) {
                         timer--;
                         return downloadBtn.innerHTML =
-                            `Your download will begin in <b>${timer}</b> seconds`;
+                            `<span class="downloadTxt">Your download will begin in <b>${timer}</b> seconds</span>`;
                     }
                     clearInterval(initCounter);
                     location.href = fileLink;
