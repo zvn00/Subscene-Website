@@ -999,6 +999,12 @@ footer .legal span a:hover {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   max-width: 100%;
+  width: auto;
+  white-space: nowrap; 
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
 }
 
 .download-btn:hover {
@@ -1011,11 +1017,11 @@ footer .legal span a:hover {
   transition: none;
   font-size: 1rem;
   pointer-events: none;
+  overflow-wrap: break-word;
 }
 
 .download-btn.timer b {
   color: var(--accent-color);
-  padding: 0 8px;
 }
 
 .download-btn .icon {
@@ -1026,8 +1032,6 @@ footer .legal span a:hover {
   font-size: 1rem;
   padding-left: 10px;
   font-weight: 500;
-  word-break: break-all;
-  white-space: break-spaces;
 }
 
 

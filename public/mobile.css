@@ -40,7 +40,7 @@
         flex-direction: column;
     }
 
-    .download-btn.timer {
-        text-align: center;
-    }
+    .download-btn {
+        padding: 16px 20px; /* Adjust padding for mobile view as needed */
+      }
 }
