@@ -18,6 +18,12 @@ $(document).ready(function () {
       }
     });
 
+    $(".SearchBtn").on("click", function (event) {
+      event.preventDefault();
+      console.log("clicked");
+      performSearch();
+    });
+
   }
 
   if ($("#dataTable").length > 0) {

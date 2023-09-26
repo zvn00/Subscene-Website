@@ -29,6 +29,7 @@
     <div class="container">
         <div class="other__search__container">
             <input class="search__input" type="text" placeholder="Search">
+            <span class="SearchBtn"><i class="fas fa-search"></i></span>
         </div>
 
         <h2 class="subHeader" style="text-align: center;"><%= data.title || '' %> <%= lan || '' %> subtitle download</h2>
@@ -188,7 +189,7 @@
             document.getElementById("telegram-link").href = `https://telegram.me/share/url?url=${encodeURIComponent(currentUrl)}`;
 
             const downloadBtn = document.querySelector(".download-btn");
-            const fileLink = "https://subtitlez-api.glitch.me" + "<%= data.download %>";
+            const fileLink = "https://subscene-api.testgmail3.repl.co" + "<%= data.download %>";
 
             const initTimer = () => {
                 if (downloadBtn.classList.contains("disable-timer")) {

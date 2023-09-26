@@ -39,4 +39,8 @@
     .buttons {
         flex-direction: column;
     }
+
+    .download-btn.timer {
+        text-align: center;
+    }
 }
