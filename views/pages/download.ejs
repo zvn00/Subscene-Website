@@ -32,27 +32,33 @@
             <span class="SearchBtn"><i class="fas fa-search"></i></span>
         </div>
 
-        <h2 class="subHeader" style="text-align: center;"><%= data.title || '' %> <%= lan || '' %> subtitle download</h2>
+        <h2 class="subHeader" style="text-align: center;"><%= data.title || '' %> <%= lan || '' %> subtitle download
+        </h2>
         <div class="subInfo">
             <div class="subPoster">
-                <img src="<%= data.imdbInfo.poster || '' %>" alt="<%= data.title %>">
+                <% if (data.imdbInfo && data.imdbInfo.poster) { %>
+                <img src="<%= data.imdbInfo.poster %>" alt="<%= data.title || '' %>">
+                <% } else if (data.poster) { %>
+                <img src="<%= data.poster %>" alt="<%= data.title || '' %>">
+                <% } %>
             </div>
             <div class="subDesc">
                 <span class="title"><%= data.title || '' %></span>
+
                 <div class="more">
-                    <span class="content"><%= data.imdbInfo.contentRating || '' %></span>
-                    <span class="rating">⭐ <%= data.imdbInfo.rating.star || '' %></span>
+                    <span class="content"><%= data.imdbInfo ? data.imdbInfo.contentRating : '' %></span>
+                    <span class="rating">⭐ <%= data.imdbInfo ? data.imdbInfo.rating.star : '' %></span>
                 </div>
                 <div class="release">
                     <span class="subKey">Release Date :</span>
-                    <span><%= data.imdbInfo.released.day || '' %>/ <%= data.imdbInfo.released.month || '' %>/
-                        <%= data.imdbInfo.released.year || '' %></span>
+                    <span><%= data.imdbInfo ? (data.imdbInfo.released.day || '') + '/' + (data.imdbInfo.released.month || '') + '/' + (data.imdbInfo.released.year || '') : '' %></span>
                 </div>
                 <div class="runtime">
                     <span class="subKey">Runtime :</span>
-                    <span><%= data.imdbInfo.runtime || '' %></span>
+                    <span><%= data.imdbInfo ? data.imdbInfo.runtime : '' %></span>
                 </div>
-                <% for (let i = 0; i < data.imdbInfo.top_credits.length; i++) {%>
+                <% if (data.imdbInfo && data.imdbInfo.top_credits) { %>
+                <% for (let i = 0; i < data.imdbInfo.top_credits.length; i++) { %>
                 <div class="cast">
                     <span class="subKey"><%= data.imdbInfo.top_credits[i].name || '' %> :</span>
                     <span>
@@ -65,9 +71,10 @@
                     </span>
                 </div>
                 <% } %>
+                <% } %>
                 <div class="desc">
                     <span class="subKey">Description :</span>
-                    <span><%= data.imdbInfo.description || '' %></span>
+                    <span><%= data.imdbInfo ? data.imdbInfo.description : '' %></span>
                 </div>
 
             </div>
@@ -183,10 +190,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const currentUrl = window.location.href;
-            document.getElementById("facebook-link").href = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(currentUrl)}`;
-            document.getElementById("twitter-link").href = `https://twitter.com/share?url=${encodeURIComponent(currentUrl)}`;
-            document.getElementById("whatsapp-link").href = `https://api.whatsapp.com/send?text=${encodeURIComponent(currentUrl)}`;
-            document.getElementById("telegram-link").href = `https://telegram.me/share/url?url=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("facebook-link").href =
+                `https://www.facebook.com/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("twitter-link").href =
+                `https://twitter.com/share?url=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("whatsapp-link").href =
+                `https://api.whatsapp.com/send?text=${encodeURIComponent(currentUrl)}`;
+            document.getElementById("telegram-link").href =
+                `https://telegram.me/share/url?url=${encodeURIComponent(currentUrl)}`;
 
             const downloadBtn = document.querySelector(".download-btn");
             const fileLink = "https://subscene-api.testgmail3.repl.co" + "<%= data.download %>";
@@ -197,7 +208,8 @@
                 }
                 let timer = downloadBtn.dataset.timer;
                 downloadBtn.classList.add("timer");
-                downloadBtn.innerHTML = `<span class="downloadTxt">Your download will begin in <b>${timer}</b> seconds</span>`;
+                downloadBtn.innerHTML =
+                    `<span class="downloadTxt">Your download will begin in <b>${timer}</b> seconds</span>`;
                 const initCounter = setInterval(() => {
                     if (timer > 0) {
                         timer--;

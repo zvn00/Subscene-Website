@@ -715,6 +715,10 @@ ol.searchSubs li a:hover {
   white-space: nowrap;
 }
 
+.subInfo .subTable {
+  width: 100%;
+}
+
 .dlBtn {
   background: var(--accent-color);
   padding: 0.3rem 0.5rem;

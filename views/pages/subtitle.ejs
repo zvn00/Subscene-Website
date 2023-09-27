@@ -20,28 +20,34 @@
       <input class="search__input" type="text" placeholder="Search">
       <span class="SearchBtn"><i class="fas fa-search"></i></span>
     </div>
-    
+
     <h2 class="subHeader" style="text-align: center;">Subtitles for <%= data.title || '' %></h2>
     <div class="subInfo">
       <div class="subPoster">
-        <img src="<%= data.imdbInfo.poster || '' %>" alt="<%= data.title || '' %>">
+        <% if (data.imdbInfo && data.imdbInfo.poster) { %>
+        <img src="<%= data.imdbInfo.poster %>" alt="<%= data.title || '' %>">
+        <% } else if (data.poster) { %>
+        <img src="<%= data.poster %>" alt="<%= data.title || '' %>">
+        <% } %>
+
       </div>
       <div class="subDesc">
         <span class="title"><%= data.title || '' %></span>
+
         <div class="more">
-          <span class="content"><%= data.imdbInfo.contentRating || '' %></span>
-          <span class="rating">⭐ <%= data.imdbInfo.rating.star || '' %></span>
+          <span class="content"><%= data.imdbInfo ? data.imdbInfo.contentRating : '' %></span>
+          <span class="rating">⭐ <%= data.imdbInfo ? data.imdbInfo.rating.star : '' %></span>
         </div>
         <div class="release">
           <span class="subKey">Release Date :</span>
-          <span><%= data.imdbInfo.released.day || '' %>/ <%= data.imdbInfo.released.month || '' %>/
-            <%= data.imdbInfo.released.year || '' %></span>
+          <span><%= data.imdbInfo ? (data.imdbInfo.released.day || '') + '/' + (data.imdbInfo.released.month || '') + '/' + (data.imdbInfo.released.year || '') : '' %></span>
         </div>
         <div class="runtime">
           <span class="subKey">Runtime :</span>
-          <span><%= data.imdbInfo.runtime || '' %></span>
+          <span><%= data.imdbInfo ? data.imdbInfo.runtime : '' %></span>
         </div>
-        <% for (let i = 0; i < data.imdbInfo.top_credits.length; i++) {%>
+        <% if (data.imdbInfo && data.imdbInfo.top_credits) { %>
+        <% for (let i = 0; i < data.imdbInfo.top_credits.length; i++) { %>
         <div class="cast">
           <span class="subKey"><%= data.imdbInfo.top_credits[i].name || '' %> :</span>
           <span>
@@ -54,54 +60,57 @@
           </span>
         </div>
         <% } %>
+        <% } %>
         <div class="desc">
           <span class="subKey">Description :</span>
-          <span><%= data.imdbInfo.description %></span>
+          <span><%= data.imdbInfo ? data.imdbInfo.description : '' %></span>
         </div>
-      </div>
-    </div>
 
-    <div class="subTable">
-
-      <div class="language-filter">
-        <label for="language-select">Filter by Language</label>
-        <select id="language-select">
-          <option value="">All</option>
-          <% for (let j = 0; j < data.subtitles.length; j++) {%>
-          <option value="<%= data.subtitles[j].lan || '' %>"><%= data.subtitles[j].lan || '' %></option>
-          <% } %>
-        </select>
       </div>
 
-      <div class="tableContainer">
-        <table id="dataTable" class="recentTable display responsive" width="100%">
-          <thead>
-            <tr>
-              <th>Language</th>
-              <th>Name</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for (let j = 0; j < data.subtitles.length; j++) { %>
-            <tr>
-              <td><%= data.subtitles[j].lan || '' %></td>
-              <td><a href="<%= data.subtitles[j].path || '' %>"><%= data.subtitles[j].filmTitle || '' %></a></td>
-              <td><a href="<%= data.subtitles[j].path || '' %>" class="dlBtn"><i class="fas fa-download"></i></a></td>
-            </tr>
+      </div>
+
+      <div class="subTable">
+
+        <div class="language-filter">
+          <label for="language-select">Filter by Language</label>
+          <select id="language-select">
+            <option value="">All</option>
+            <% for (let j = 0; j < data.subtitles.length; j++) {%>
+            <option value="<%= data.subtitles[j].lan || '' %>"><%= data.subtitles[j].lan || '' %></option>
             <% } %>
-          </tbody>
-        </table>
+          </select>
+        </div>
+
+        <div class="tableContainer">
+          <table id="dataTable" class="recentTable display responsive" width="100%">
+            <thead>
+              <tr>
+                <th>Language</th>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let j = 0; j < data.subtitles.length; j++) { %>
+              <tr>
+                <td><%= data.subtitles[j].lan || '' %></td>
+                <td><a href="<%= data.subtitles[j].path || '' %>"><%= data.subtitles[j].filmTitle || '' %></a></td>
+                <td><a href="<%= data.subtitles[j].path || '' %>" class="dlBtn"><i class="fas fa-download"></i></a></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+
+
       </div>
-      
 
-  </div>
+      <footer>
 
-  <footer>
+        <%- include('../partials/footer'); %>
 
-    <%- include('../partials/footer'); %>
-
-  </footer>
+      </footer>
 
 </body>
 
